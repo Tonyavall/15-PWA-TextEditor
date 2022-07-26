@@ -14,11 +14,11 @@ const initdb = async () =>
 
 export const putDb = async (content) => {
   try {
-    const contactDb = await openDB('jate', 1)
+    const jateDb = await openDB('jate', 1)
 
-    const tx = contactDb.transaction('contact', 'readwrite')
+    const tx = jateDb.transaction('jate', 'readwrite')
 
-    const store = tx.objectStore('contact')
+    const store = tx.objectStore('jate')
 
     const req = store.add(content)
 
@@ -30,7 +30,23 @@ export const putDb = async (content) => {
   }
 }
 
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error('getDb not implemented');
+export const getDb = async () => {
+  try {
+    const jateDb = await openDB('jate', 1)
+
+    const tx = jateDb.transaction('jate', 'readonly')
+
+    const store = tx.objectStore('jate')
+
+    const req = store.getAll()
+
+    const res = await req
+    console.log('Got items.', res)
+
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 initdb();
