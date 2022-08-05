@@ -8,18 +8,14 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 // Handles click installation event
 butInstall.addEventListener('click', async () => {
-    try {
-        const promptEvent = window.deferredPrompt
-        if (!promptEvent) return
+    const promptEvent = window.deferredPrompt
+    if (!promptEvent) return
 
-        promptEvent.prompt()
+    promptEvent.prompt()
 
-        window.deferredPrompt = null
+    window.deferredPrompt = null
 
-        butInstall.classList.toggle('hidden', true)
-    } catch (error) {
-        console.log(error)
-    }
+    butInstall.classList.toggle('hidden', true)
 });
 
 // Clears prompt once app has been installed
