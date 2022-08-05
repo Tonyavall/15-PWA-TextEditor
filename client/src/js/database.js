@@ -20,7 +20,7 @@ export const putDb = async (content) => {
 
     const store = tx.objectStore('jate')
 
-    const req = store.add({ content: content })
+    const req = store.put({ id: 1, value: content })
 
     const res = await req
     console.log('Data saved.', res)
@@ -38,12 +38,12 @@ export const getDb = async () => {
 
     const store = tx.objectStore('jate')
 
-    const req = store.getAll()
+    const req = store.get(1)
 
     const res = await req
-    console.log('Got items.', res)
+    if (res) console.log('Got items.', res)
 
-    return res
+    return res?.value
   } catch (error) {
     console.log(error)
   }
