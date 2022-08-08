@@ -1,4 +1,4 @@
-# HW-14-SocialNetworkAPI
+# HW-15-TextEditor
 A text editor progressive web application.
 
 ## Table of Contents
